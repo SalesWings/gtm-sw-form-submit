@@ -31,15 +31,15 @@ ___TEMPLATE_PARAMETERS___
 [
   {
     "type": "TEXT",
-    "name": "emailSelector",
-    "displayName": "Email Input Selector",
+    "name": "emailValue",
+    "displayName": "Email Value",
     "simpleValueType": true,
     "valueValidators": [
       {
         "type": "NON_EMPTY"
       }
     ],
-    "help": "CSS selector for the email input field (e.g., \"#email\", \".email-input\", \"input[type='email']\")."
+    "help": "The email value to submit. For example, create a DOM Element variable with a matching CSS selector and attribute name 'value', then reference it here as {{Your DOM Element Variable}}."
   },
   {
     "type": "GROUP",
@@ -107,18 +107,11 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const log = require('logToConsole');
 const callInWindow = require('callInWindow');
-const queryPermission = require('queryPermission');
-const query = require('query');
 
-// Get the email value from the configured selector
-let emailValue = '';
-if (data.emailSelector) {
-  const emailElement = query(data.emailSelector);
-  if (emailElement && emailElement.value) {
-    emailValue = emailElement.value;
-  } else {
-    log('Email element not found or has no value for selector: ' + data.emailSelector);
-  }
+// Get the email value from the configured variable
+let emailValue = data.emailValue || '';
+if (!emailValue) {
+  log('No email value provided');
 }
 
 // Build the event object
@@ -267,43 +260,6 @@ ___WEB_PERMISSIONS___
       "isEditedByUser": true
     },
     "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "access_dom",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "allowedDomInteraction",
-          "value": {
-            "type": 1,
-            "string": "specific"
-          }
-        },
-        {
-          "key": "allowedDomOperations",
-          "value": {
-            "type": 2,
-            "listItem": [
-              {
-                "type": 1,
-                "string": "select_elements"
-              },
-              {
-                "type": 1,
-                "string": "read_element_properties"
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
   }
 ]
 
@@ -315,7 +271,7 @@ scenarios:
   code: |-
     const mockData = {
       pid:'4723ad53-8a19-43ab-9b0a-e6d3f1fbb2e4',
-      emailSelector: '#email'
+      emailValue: 'test@example.com'
       // Mocked field values
     };
 
