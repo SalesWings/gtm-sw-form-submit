@@ -139,6 +139,8 @@ const makeNumber = require('makeNumber');
 let emailValue = data.emailValue || '';
 if (!emailValue) {
   log('No email value provided');
+  data.gtmOnFailure();
+  return;
 }
 
 // Build the event object
@@ -332,6 +334,21 @@ scenarios:
 
     // Verify that the tag finished successfully.
     assertApi('gtmOnSuccess').wasCalled();
+- name: fails when email missing
+  code: |-
+    const mockData = {
+      pid: '4723ad53-8a19-43ab-9b0a-e6d3f1fbb2e4'
+      // emailValue intentionally missing
+    };
+
+    let callHappened = false;
+    mock('callInWindow', function() { callHappened = true; return true; });
+
+    runCode(mockData);
+
+    assertApi('gtmOnFailure').wasCalled();
+    assertApi('gtmOnSuccess').wasNotCalled();
+    assertThat(callHappened).isFalse();
 - name: test with event properties
   code: |-
     const mockData = {
@@ -388,5 +405,4 @@ scenarios:
 ___NOTES___
 
 Created on 7/9/2025, 12:00:00 PM
-
 
