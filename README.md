@@ -23,14 +23,9 @@ Development is done in [Google Tag Manager](https://tagmanager.google.com/).
 
 Reference documentation: [Submit a template to the Community Template Gallery](https://developers.google.com/tag-platform/tag-manager/templates/gallery).
 
-This template is **not yet listed** in the [Community Template Gallery](https://tagmanager.google.com/gallery/#/). The initial submission was rejected because `metadata.yaml`
-carried an invalid documentation URL, see [#6](https://github.com/SalesWings/gtm-sw-form-submit/issues/6).
+This template is published to the [Community Template Gallery](https://tagmanager.google.com/gallery/#/).
 
-Once the fix is merged, the template has to be submitted once, manually: sign in to GitHub with an account that has access to this repository, open the
-[gallery](https://tagmanager.google.com/gallery/#/), click the top-right menu button, select `Submit Template` and provide the repository URL. GTM does not pick up
-an unlisted repository on its own.
-
-Subsequent updates are published by updating `metadata.yaml` file in the `main` branch of the repository. GTM tracks changes in the file and publishes the version added
+The publishing is done by updating `metadata.yaml` file in the `main` branch of the repository. GTM tracks changes in the file and publishes the version added
 on top of the `versions` array in `metadata.yaml`. 
 The `sha` field of an element in `versions` array identifies the git commit sha of the version to be published.
 
