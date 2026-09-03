@@ -13,7 +13,7 @@
 # limitations under the License.
 
 homepage: "https://www.saleswingsapp.com"
-documentation: "https://support.saleswingsapp.com/"
+documentation: "https://support.saleswingsapp.com/en/articles/5780001-guide-how-to-send-lead-attributes-la-via-google-tag-manager-gtm"
 versions:
   - sha: bd2f1cce3b3aa4b5b73e22217fd3109fd592450d
     changeNotes: Initial release
