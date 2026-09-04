@@ -1,4 +1,4 @@
-# gtm-sw-form-aubmit
+# gtm-sw-form-submit
 
 SalesWings Form Submission tag template for [Google Tag Manager](https://tagmanager.google.com/) is a tag template that allows sending form submission events to SalesWings.
 
